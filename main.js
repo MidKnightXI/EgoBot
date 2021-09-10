@@ -14,8 +14,9 @@ const cli = new tmi.client(opts);
 
 cli.connect();
 
-cli.on('message', onMessageHandler);
+cli.on('connecting', onConnecting)
 cli.on('connected', onConnectedHandler);
+cli.on('message', onMessageHandler);
 
 
 function onMessageHandler(target, context, msg, self) {
@@ -26,6 +27,8 @@ function onMessageHandler(target, context, msg, self) {
         case '!dice':
             client.say(target, rollDice());
             console.log("onMessageHandler: !dice");
+        case '!roulette':
+            client.say(target, russianRoulette());
         default:
             console.log(`onMessageHandler: ${cmd} is an unknown command.`);
     }
@@ -33,6 +36,19 @@ function onMessageHandler(target, context, msg, self) {
 
 function rollDice() {
     return Math.floor(Math.random() * 6) + 1;
+}
+
+function russianRoulette() {
+    var bullet = Math.floor(Math.random() * 8);
+
+    if (Math.floor(Math.random() * 7) + 1 === bullet)
+        return "*BOOM*, you lost your head Sadge";
+    else
+        return "*click*, nothing ... pepeS";
+}
+
+function onConnecting() {
+    console.log(`BigEgo is trying to reach your chat ...`)
 }
 
 function onConnectedHandler(addr, port) {
