@@ -30,8 +30,13 @@ function onMessageHandler(target, context, msg, self) {
         case '!roulette':
             client.say(target, russianRoulette());
         default:
-            console.log(`onMessageHandler: ${cmd} is an unknown command.`);
+            if (!customCommandHandler(target, cmd))
+                console.log(`onMessageHandler: ${cmd} is an unknown command.`);
     }
+}
+
+function customCommandHandler(target, cmd) {
+    
 }
 
 function rollDice() {
