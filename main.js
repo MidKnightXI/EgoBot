@@ -13,7 +13,7 @@ const opts = {
 const cli = new tmi.client(opts);
 
 cli.connect();
-console.log("I'm getting developped by MidKnight, check his GitHub \uD83D\uDE4F\n\nHere -> https://github.com/MidKnightXI")
+console.log("I'm getting developped by MidKnight, check his GitHub \uD83D\uDE4F\n\nHere -> https://github.com/MidKnightXI\n")
 cli.on('connecting', onConnecting)
 cli.on('connected', onConnectedHandler);
 cli.on('message', onMessageHandler);
@@ -36,7 +36,7 @@ function onMessageHandler(target, context, msg, self) {
             break;
         default:
             if (!customCommandHandler(target, cmd))
-                console.log(`onMessageHandler: ${cmd} is an unknown command.`);
+                console.log(`onMessageHandler: '${cmd}' is an unknown command.`);
                 break;
     }
 }
