@@ -22,25 +22,31 @@ cli.on('message', onMessageHandler);
 function onMessageHandler(target, context, msg, self) {
     if (self || !msg.startsWith('!'))
         return;
-    const cmd = msg.trim();
+    msg = msg.trim();
+    const cmd = msg.substr(1, msg.length);
+    console.log(cmd)
     switch (cmd) {
-        case '!dice':
-            client.say(target, rollDice());
+        case 'dice':
+            cli.say(target, rollDice());
             console.log("onMessageHandler: !dice");
-        case '!roulette':
-            client.say(target, russianRoulette());
+            break;
+        case 'roulette':
+            cli.say(target, russianRoulette());
+            console.log("onMessageHandler: !roulette")
+            break;
         default:
             if (!customCommandHandler(target, cmd))
                 console.log(`onMessageHandler: ${cmd} is an unknown command.`);
+                break;
     }
 }
 
 function customCommandHandler(target, cmd) {
-    
+    console.log("customCmd")
 }
 
 function rollDice() {
-    return Math.floor(Math.random() * 6) + 1;
+    return String(Math.floor(Math.random() * 6) + 1);
 }
 
 function russianRoulette() {
@@ -49,7 +55,7 @@ function russianRoulette() {
     if (Math.floor(Math.random() * 7) + 1 === bullet)
         return "*BOOM*, you lost your head Sadge";
     else
-        return "*click*, nothing ... pepeS";
+        return "*click* nothing ... pepeS";
 }
 
 function onConnecting() {
