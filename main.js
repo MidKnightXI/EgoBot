@@ -18,6 +18,8 @@ cli.on('connecting', onConnecting)
 cli.on('connected', onConnectedHandler);
 cli.on('message', onMessageHandler);
 
+const builtinGames = require("./builtinGames")
+
 
 function onMessageHandler(target, context, msg, self) {
     if (self || !msg.startsWith('!'))
@@ -27,11 +29,11 @@ function onMessageHandler(target, context, msg, self) {
     console.log(cmd)
     switch (cmd) {
         case 'dice':
-            cli.say(target, rollDice());
+            cli.say(target, builtinGames.rollDice());
             console.log("onMessageHandler: !dice");
             break;
         case 'roulette':
-            cli.say(target, russianRoulette());
+            cli.say(target, builtinGames.russianRoulette());
             console.log("onMessageHandler: !roulette")
             break;
         default:
@@ -42,26 +44,24 @@ function onMessageHandler(target, context, msg, self) {
 }
 
 function customCommandHandler(target, cmd) {
-    console.log("customCmd")
+    const checkerOutput = jsonChecker(cmd);
+
+    if (checkerOutput != undefined) {
+        cli.say(target, checkerOutput);
+    }
 }
 
-function rollDice() {
-    return String(Math.floor(Math.random() * 6) + 1);
-}
-
-function russianRoulette() {
-    var bullet = Math.floor(Math.random() * 8);
-
-    if (Math.floor(Math.random() * 7) + 1 === bullet)
-        return "*BOOM*, you lost your head Sadge";
-    else
-        return "*click* nothing ... pepeS";
+function jsonChecker(cmd) {
+    const fs = require('fs');
+    let rawdata = fs.readFileSync('commands.json');
+    let parsedJSON = JSON.parse(rawdata);
+    return (parsedJSON[cmd]);
 }
 
 function onConnecting() {
     console.log(`BigEgo is trying to reach your chat ...`)
 }
 
-function onConnectedHandler(addr, port) {
+function onConnectedHandler(addr, port, target) {
     console.log(`Connected to ${addr}:${port}`);
 }
