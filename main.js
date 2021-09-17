@@ -13,7 +13,6 @@ const opts = {
 const cli = new tmi.client(opts);
 
 cli.connect();
-console.log("I'm getting developped by MidKnight, check his GitHub \uD83D\uDE4F\n\nHere -> https://github.com/MidKnightXI\n")
 cli.on('connecting', onConnecting)
 cli.on('connected', onConnectedHandler);
 cli.on('message', onMessageHandler);
@@ -54,7 +53,9 @@ function customCommandHandler(target, cmd) {
 
     if (checkerOutput != undefined) {
         cli.say(target, checkerOutput);
+        return true;
     }
+    return false;
 }
 
 function jsonChecker(cmd) {
