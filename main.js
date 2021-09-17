@@ -33,13 +33,14 @@ function onMessageHandler(target, context, msg, self) {
             break;
         case 'roulette':
             cli.say(target, builtinGames.russianRoulette());
-            console.log("onMessageHandler: !roulette")
+            console.log("onMessageHandler: !roulette");
             break;
         case 'flip':
             if (builtinGames.flipaCoin() === 1)
                 cli.say(target, "it's tail!");
             else
-                cli.say(target, "it's head!")
+                cli.say(target, "it's head!");
+            console.log("onMessageHandler: !flip");
             break;
         default:
             if (!customCommandHandler(target, cmd))
@@ -58,9 +59,8 @@ function customCommandHandler(target, cmd) {
 
 function jsonChecker(cmd) {
     const fs = require('fs');
-    let rawdata = fs.readFileSync('commands.json');
-    let parsedJSON = JSON.parse(rawdata);
-    return (parsedJSON[cmd]);
+    let parsedJSON = JSON.parse(fs.readFileSync('commands.json'));
+    return (JSON.stringify(parsedJSON[cmd]));
 }
 
 function onConnecting() {
