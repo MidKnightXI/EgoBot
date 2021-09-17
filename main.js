@@ -15,10 +15,14 @@ const cli = new tmi.client(opts);
 cli.connect();
 cli.on('connecting', onConnecting)
 cli.on('connected', onConnectedHandler);
+cli.on('message', wordFilter);
 cli.on('message', onMessageHandler);
 
-const builtinGames = require("./builtinGames")
+const builtinGames = require("./builtinGames");
 
+
+function wordFilter(target, context, msg, self) {
+}
 
 function onMessageHandler(target, context, msg, self) {
     if (self || !msg.startsWith('!'))
