@@ -26,7 +26,6 @@ function onMessageHandler(target, context, msg, self) {
         return;
     msg = msg.trim();
     const cmd = msg.substr(1, msg.length);
-    console.log(cmd)
     switch (cmd) {
         case 'dice':
             cli.say(target, builtinGames.rollDice());
@@ -35,6 +34,12 @@ function onMessageHandler(target, context, msg, self) {
         case 'roulette':
             cli.say(target, builtinGames.russianRoulette());
             console.log("onMessageHandler: !roulette")
+            break;
+        case 'flip':
+            if (builtinGames.flipaCoin() === 1)
+                cli.say(target, "it's tail!");
+            else
+                cli.say(target, "it's head!")
             break;
         default:
             if (!customCommandHandler(target, cmd))
