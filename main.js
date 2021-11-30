@@ -3,7 +3,7 @@ const tmi = require('tmi.js');
 const opts = {
     identity: {
       username: process.env.BOT_USERNAME,
-      password: process.env.OAUTH_TOKEN
+      password: process.env.BOT_OAUTH_TOKEN
     },
     channels: [
         process.env.CHANNEL_NAME
