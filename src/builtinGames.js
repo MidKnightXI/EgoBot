@@ -3,7 +3,7 @@ function rollDice() {
 }
 
 function russianRoulette() {
-    let bullet = Math.floor(Math.random() * 8);
+    const bullet = Math.floor(Math.random() * 8);
 
     if ((Math.floor(Math.random() * 7) + 1) === bullet)
         return "*BOOM*, you lost your head Sadge";
@@ -11,9 +11,9 @@ function russianRoulette() {
         return "*click* nothing ... pepeS";
 }
 
-function flipaCoin() {
+function flipCoin() {
     return ((Math.floor(Math.random() * 10)) % 2)
 }
 
 
-module.exports = {rollDice, russianRoulette, flipaCoin};
+export default {rollDice, russianRoulette, flipCoin};
