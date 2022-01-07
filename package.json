@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "bad-words": "^3.0.4",
     "tmi.js": "^1.8.5"
