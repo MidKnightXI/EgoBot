@@ -1,5 +1,4 @@
 import { client } from 'tmi.js';
-import { flipCoin, rollDice, russianRoulette } from './src/builtinGames'
 import { onMessageHandler } from './src/messageHandler'
 
 const opts = {
