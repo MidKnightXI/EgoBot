@@ -1,5 +1,6 @@
 import { client } from 'tmi.js';
 import onMessageHandler from './src/messageHandler.js'
+import { onBanHandler } from './src/moderation.js';
 
 const opts = {
   identity: {
@@ -9,15 +10,16 @@ const opts = {
   channels: [
     process.env.CHANNEL_NAME
   ]
-};
+}
 
-const cli = new client(opts);
+global.cli = new client(opts);
 
 cli.connect();
 cli.on('connecting', onConnecting)
 cli.on('connected', onConnectedHandler);
 cli.on('disconnected', onDisconnectedHandler)
 cli.on('message', onMessageHandler)
+cli.on('ban', onBanHandler)
 
 function onConnecting() {
   console.log(`BigEgo is trying to reach your chat ...`)
