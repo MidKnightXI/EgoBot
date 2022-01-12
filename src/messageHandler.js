@@ -1,8 +1,10 @@
-import { flipCoin, rollDice, russianRoulette } from './builtinGames'
-import BadWordsFilter from 'bad-words';
+import { flipCoin, rollDice, russianRoulette } from './builtinGames.js'
+import Filter from 'bad-words'
 
-function onMessageHandler() {
-  console.log('message')
+const filter = new Filter()
+
+export default function onMessageHandler(channel, userstate, message, self) {
+  if (filter.isProfane(message)) { //delete messages that contains profanity
+
+  }
 }
-
-export default onMessageHandler;

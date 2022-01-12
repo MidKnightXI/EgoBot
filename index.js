@@ -1,5 +1,5 @@
 import { client } from 'tmi.js';
-import { onMessageHandler } from './src/messageHandler'
+import onMessageHandler from './src/messageHandler.js'
 
 const opts = {
   identity: {
@@ -16,6 +16,7 @@ const cli = new client(opts);
 cli.connect();
 cli.on('connecting', onConnecting)
 cli.on('connected', onConnectedHandler);
+cli.on('disconnected', onDisconnectedHandler)
 cli.on('message', onMessageHandler)
 
 function onConnecting() {
@@ -24,4 +25,8 @@ function onConnecting() {
 
 function onConnectedHandler(addr, port, target) {
   console.log(`Connected to ${addr}:${port}`);
+}
+
+function onDisconnectedHandler(reason) {
+  console.log(`Disconnected: ${reason}`)
 }
