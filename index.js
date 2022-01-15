@@ -3,13 +3,16 @@ import onMessageHandler from './src/messageHandler.js'
 import { onBanHandler } from './src/moderation.js';
 
 const opts = {
+  options: { debug: true, messagesLogLevel: "info" },
+	connection: {
+		reconnect: true,
+		secure: true
+	},
   identity: {
     username: process.env.BOT_USERNAME,
     password: process.env.BOT_OAUTH_TOKEN
   },
-  channels: [
-    process.env.CHANNEL_NAME
-  ]
+  channels: process.env.CHANNEL_NAME.split(', ')
 }
 
 global.cli = new client(opts);
