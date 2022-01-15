@@ -13,8 +13,7 @@ export default function onMessageHandler(channel, userstate, message, self) {
   if (filter.isProfane(message) && userstate.mod === false && !userstate.badges.broadcaster)
     cli.deletemessage(channel, userstate.id)
   const msg = message.split(' ')
-  if (userstate.mod === true || userstate.badges.broadcaster)
-    if (checkModeration(channel, userstate, msg, self) === true)
-      return;
+  if ((userstate.mod === true || userstate.badges.broadcaster) && checkModeration(channel, userstate, msg, self) === true)
+    return;
   checkGames(channel, msg[0]) === true ? true : checkInfos(channel, msg[0])
 }
