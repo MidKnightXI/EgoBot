@@ -24,5 +24,6 @@ export function checkGames(channel, msg) {
     '!roulette': () => russianRoulette(channel),
     '!flip': () => flipCoin(channel)
   }
-  return games[msg]() ? true : false
+  if (games[msg])
+    return games[msg]() ? true : false
 }

@@ -1,10 +1,18 @@
 import { checkModeration } from './moderation.js';
 import { checkGames } from './builtinGames.js'
+import { readFileSync } from 'fs';
 import Filter from 'bad-words'
 
 const filter = new Filter()
 
-function checkInfos(channel, userstate, message, self) {
+function checkInfos(channel, msg) {
+  const tmp = readFileSync('commands.json', {encoding:'utf8', flag:'r'})
+  const infos = JSON.parse(tmp)
+  if (infos[msg]) {
+    cli.say(channel, infos[msg])
+    return true
+  } else
+    return false
 }
 
 export default function onMessageHandler(channel, userstate, message, self) {
