@@ -1,0 +1,8 @@
+services:
+  bot:
+    container_name: bot-container
+    build: ./sources
+    environment:
+      - BOT_USERNAME=${BOT_USERNAME}
+      - BOT_OAUTH_TOKEN=${BOT_OAUTH_TOKEN}
+      - CHANNEL_NAME=${CHANNEL_NAME}
