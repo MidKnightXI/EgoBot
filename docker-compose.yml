@@ -26,11 +26,6 @@ services:
       - db-data:/var/lib/postgresql/data
     networks:
       - db-net
-  adminer:
-    image: adminer
-    restart: on-failure
-    ports:
-      - 8080:8080
 
 networks:
   db-net: {}
