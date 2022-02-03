@@ -9,5 +9,5 @@ yes | docker system prune -a
 yes | docker volume prune
 clear
 echo -e "${green}\t\t[Run docker-compose up --build]\n${neutral}"
-docker-compose build -q
+docker-compose build
 clear
