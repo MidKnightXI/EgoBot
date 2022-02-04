@@ -3,6 +3,7 @@
   "dependencies": {
     "bad-words": "^3.0.4",
     "fs": "^0.0.1-security",
+    "pg": "^8.7.1",
     "tmi.js": "^1.8.5"
   }
 }
