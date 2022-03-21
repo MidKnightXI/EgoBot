@@ -9,7 +9,7 @@ const pool = new Pool({
 })
 
 const getUsers = (request, response) => {
-  pool.query('SELECT * FROM Channels ORDER BY id ASC', (error, results) => {
+  pool.query('SELECT * FROM Channel ORDER BY id ASC', (error, results) => {
     if (error)
       throw error
     response.status(200).json(results.rows)
@@ -17,14 +17,16 @@ const getUsers = (request, response) => {
 }
 
 const createUser = (request, response) => {
-  const { name } = request.body
+  const { name } = request.body;
 
-  pool.query('INSERT INTO users (name, email) VALUES ($1)', [ name ], (error, results) => {
-    if (error)
-      throw error
-    response.status(201).send(`User added with ID: ${results.insertId}`)
+  pool.query("INSERT INTO Channel (name) VALUES ($1) RETURNING id", [ name ],
+  (error, results) => {
+  if (error)
+    throw error
+  response.status(201).send(`User added with ID: ${results.rows[0].id}`)
   })
 }
+
 
 const deleteUser = (request, response) => {
   const id = parseInt(request.params.id)
