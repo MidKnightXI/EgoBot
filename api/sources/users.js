@@ -1,12 +1,9 @@
-import { Pool } from "pg"
+import pg from "pg"
+import { pgconfig } from "./utils/pgconfig.js"
 
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-})
+const { Pool } = pg
+
+const pool = new Pool(pgconfig)
 
 const getUsers = (request, response) => {
   pool.query('SELECT * FROM Channel ORDER BY id ASC', (error, results) => {
