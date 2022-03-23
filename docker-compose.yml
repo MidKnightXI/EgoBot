@@ -1,8 +1,53 @@
 services:
+  api:
+    container_name: api-egobot
+    build: ./api
+    restart: on-failure
+    environment:
+      - API_PORT=${API_PORT}
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PORT=${DB_PORT}
+    networks:
+      - api-net
+      - db-net
+    depends_on:
+      - db
+    ports:
+      - ${API_PORT}:8080
   bot:
     container_name: bot-container
-    build: ./sources
+    build: ./bot
+    restart: on-failure
     environment:
       - BOT_USERNAME=${BOT_USERNAME}
       - BOT_OAUTH_TOKEN=${BOT_OAUTH_TOKEN}
       - CHANNEL_NAME=${CHANNEL_NAME}
+    networks:
+      - api-net
+    depends_on:
+      - api
+      - db
+  db:
+    container_name: db-egobot
+    image: postgres
+    restart: on-failure
+    environment:
+      - POSTGRES_DB=${DB_HOST}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - db-net
+    ports:
+      - 5432:5432
+
+networks:
+  db-net: {}
+  api-net: {}
+
+volumes:
+  db-data: {}
