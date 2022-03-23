@@ -6,7 +6,17 @@ const { Pool } = pg
 const pool = new Pool(pgconfig)
 
 const getCommands = (request, response) => {
-  console.log(`getCommands body: ${request.body}`)
+  const channel = request.params.id
+
+  pool.query("SELECT * FROM command WHERE channel_name = $1", [ channel ],
+  (error, results) => {
+    if (error) {
+      console.warn(error)
+      response.status(400).send("Error: can't reach database or table empty")
+    } else {
+      response.status(200).send(results.rows)
+    }
+  })
 }
 
 const createCommand = (request, response) => {

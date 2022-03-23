@@ -28,7 +28,7 @@ app.post('/users', createUser)
 app.delete('/users/:id', deleteUser)
 
 // commands routes:
-app.get('/commands', getCommands)
+app.get('/commands/:id', getCommands)
 
 // database test:
 app.get('/database/tables', getTables)
