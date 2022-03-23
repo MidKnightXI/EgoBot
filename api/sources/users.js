@@ -9,7 +9,7 @@ const getUsers = (request, response) => {
   pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
     if (error){
       console.warn(error)
-      response.status(400).send("Error: can't reach database or problem while fetching users")
+      response.status(400).send("Error: can't reach database or problem while fetching users.")
     } else
       response.status(200).json(results.rows)
   })
@@ -22,7 +22,7 @@ const createUser = (request, response) => {
   (error, results) => {
     if (error) {
       console.warn(error)
-      response.status(400).send(`Can't add channel: ${channel}(Maybe it already exists?)`)
+      response.status(400).send(`Can't add channel: ${channel}(Maybe it already exists?).`)
     } else {
       console.log(`Added channel: ${channel}`)
       response.status(201).send(`User added with ID: ${results.rows[0].id}`)
@@ -37,9 +37,9 @@ const deleteUser = (request, response) => {
   pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
     if (error) {
       console.warn(error)
-      response.status(400).send(`Can't delete user with ID: ${id}`)
+      response.status(400).send(`Can't delete user with ID: ${id}.`)
     } else
-      response.status(200).send(`User deleted with ID: ${id}`)
+      response.status(200).send(`User deleted with ID: ${id}.`)
   })
 }
 

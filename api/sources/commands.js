@@ -12,7 +12,7 @@ const getCommands = (request, response) => {
   (error, results) => {
     if (error) {
       console.warn(error)
-      response.status(400).send("Error: can't reach database or table empty")
+      response.status(400).send("Error: can't reach database or table empty.")
     } else {
       response.status(200).send(results.rows)
     }
@@ -20,8 +20,19 @@ const getCommands = (request, response) => {
 }
 
 const createCommand = (request, response) => {
-  const { channel, cmd_name, cmd_action } = request.body
-  console.log(`getCommands body: ${request.body}`)
+  const { channel_name, cmd_name, cmd_action } = request.body
+
+  pool.query("INSERT INTO commands (channel_name, cmd_name, cmd_action) VALUES ($1, $2, $3)",
+  [ channel_name, cmd_name, cmd_action ],
+  (error, results) => {
+    if (error) {
+      console.warn(error)
+      response.status(400).send("Cannot create command, conflict with database.")
+    } else {
+      console.log(`Command "${cmd_name}" created.`)
+      response.status(201).send(`Command "${cmd_name}" created.`)
+    }
+  })
 }
 
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import { getCommands } from './sources/commands.js';
+import { createCommand, getCommands } from './sources/commands.js';
 import { getTables } from './sources/database.js';
 import { getUsers, createUser, deleteUser } from './sources/users.js';
 
@@ -29,6 +29,7 @@ app.delete('/users/:id', deleteUser)
 
 // commands routes:
 app.get('/commands/:id', getCommands)
+app.post('/commands', createCommand)
 
 // database test:
 app.get('/database/tables', getTables)
