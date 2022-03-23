@@ -18,21 +18,21 @@ const getUsers = (request, response) => {
 const createUser = (request, response) => {
   const { channel } = request.body
 
-  console.log(`Added channel: ${channel}`)
   pool.query("INSERT INTO users (channel) VALUES ($1) RETURNING id", [ channel ],
   (error, results) => {
-  if (error) {
-    console.warn(error)
-    response.status(400).send(`Can't add channel: ${channel}(Maybe it already exists?)`)
-  } else
-    response.status(201).send(`User added with ID: ${results.rows[0].id}`)
+    if (error) {
+      console.warn(error)
+      response.status(400).send(`Can't add channel: ${channel}(Maybe it already exists?)`)
+    } else {
+      console.log(`Added channel: ${channel}`)
+      response.status(201).send(`User added with ID: ${results.rows[0].id}`)
+    }
   })
 }
 
 
 const deleteUser = (request, response) => {
   const id = parseInt(request.params.id)
-
 
   pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
     if (error) {

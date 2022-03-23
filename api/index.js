@@ -1,4 +1,5 @@
 import express from 'express';
+import { getCommands } from './sources/commands.js';
 import { getTables } from './sources/database.js';
 import { getUsers, createUser, deleteUser } from './sources/users.js';
 
@@ -21,11 +22,13 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-// users route:
+// users routes:
 app.get('/users', getUsers)
 app.post('/users', createUser)
 app.delete('/users/:id', deleteUser)
 
-// database test:
+// commands routes:
+app.get('/commands', getCommands)
 
+// database test:
 app.get('/database/tables', getTables)
