@@ -1,7 +1,96 @@
 import './App.css'
-import { Box, Flex, Heading, Spacer, Button } from '@chakra-ui/react'
+import { Box, Flex, Heading, Spacer, Button, Text } from '@chakra-ui/react'
+import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react'
+import { useDisclosure } from '@chakra-ui/react'
+import { Center, Square, Circle } from '@chakra-ui/react'
+import { FaTwitch } from 'react-icons/fa'
+
+function SignUpButton() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const isLoading = false
+
+  return (
+    <>
+      <Button mr='4' bg='#00524E' color='white' variant='outline' onClick={onOpen}>
+        Sign Up
+      </Button>
+
+      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader></ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text align='left'>
+              We are only stocking your channel name in our database.
+            </Text>
+            <Spacer/>
+            <Text align='left' style={{paddingBottom: 10}}>
+              It'll allow us to let you add custom commands to your channel.
+            </Text>
+          </ModalBody>
+            <Center>
+              <Button
+                leftIcon={<FaTwitch/>}
+                isLoading={isLoading}
+                bg='#9146FF'
+                color='white'>
+                  Connect with Twitch
+              </Button>
+            </Center>
+          <ModalFooter>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  )
+}
+
+function SignInButton() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const isLoading = false
+
+  return (
+    <>
+      <Button colorScheme='teal' mr='4' onClick={onOpen}>
+          Sign in
+      </Button>
+
+      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader></ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Center>
+              <Button
+                leftIcon={<FaTwitch/>}
+                isLoading={isLoading}
+                bg='#9146FF'
+                color='white'>
+                  Connect with Twitch
+              </Button>
+            </Center>
+          </ModalBody>
+          <ModalFooter>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  )
+}
 
 function App() {
+  const isLoading = false
 
   return (
     <Flex direction='column'>
@@ -11,10 +100,8 @@ function App() {
         </Box>
         <Spacer />
         <Box>
-          <Button colorScheme='teal' mr='4'>
-            Sign Up
-          </Button>
-          <Button colorScheme='teal' mr='4'>Log in</Button>
+          <SignUpButton/>
+          <SignInButton/>
         </Box>
       </Flex>
     </Flex>
