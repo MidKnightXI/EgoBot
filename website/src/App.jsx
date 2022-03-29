@@ -13,10 +13,16 @@ import {
 import { useDisclosure } from '@chakra-ui/react'
 import { Center, Square, Circle } from '@chakra-ui/react'
 import { FaTwitch } from 'react-icons/fa'
+import { useState } from 'react'
 
 function SignUpButton() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const isLoading = false
+  const [isLoading, setIsLoading] = useState(false)
+
+  const onButtonPressed = async () => {
+    setIsLoading(true)
+    setIsLoading(false)
+  }
 
   return (
     <>
@@ -34,16 +40,12 @@ function SignUpButton() {
               We are only stocking your channel name in our database.
             </Text>
             <Spacer/>
-            <Text align='left' style={{paddingBottom: 10}}>
+            <Text align='left'>
               It'll allow us to let you add custom commands to your channel.
             </Text>
           </ModalBody>
             <Center>
-              <Button
-                leftIcon={<FaTwitch/>}
-                isLoading={isLoading}
-                bg='#9146FF'
-                color='white'>
+              <Button leftIcon={<FaTwitch/>} isLoading={isLoading} bg='#9146FF' color='white' onClick={onButtonPressed}>
                   Connect with Twitch
               </Button>
             </Center>
@@ -57,7 +59,12 @@ function SignUpButton() {
 
 function SignInButton() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const isLoading = false
+  const [isLoading, setIsLoading] = useState(false)
+
+  const onButtonPressed = async () => {
+    setIsLoading(true)
+    setIsLoading(false)
+  }
 
   return (
     <>
@@ -72,11 +79,7 @@ function SignInButton() {
           <ModalCloseButton />
           <ModalBody>
             <Center>
-              <Button
-                leftIcon={<FaTwitch/>}
-                isLoading={isLoading}
-                bg='#9146FF'
-                color='white'>
+              <Button leftIcon={<FaTwitch/>} isLoading={isLoading} bg='#9146FF' color='white' onClick={onButtonPressed}>
                   Connect with Twitch
               </Button>
             </Center>
