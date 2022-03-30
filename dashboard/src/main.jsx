@@ -7,6 +7,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 
 import App from './App'
 import TwitchCallback from './routes/TwitchCallback';
@@ -20,7 +21,7 @@ ReactDOM.render(
             <Route path='/' element={<App />}>
               {/* add layout later for customisation etc ... */}
             </Route>
-            <Route path='/twitch/callback' element={TwitchCallback}/>
+            <Route path='/callback/' element={<TwitchCallback/>}/>
           </Routes>
         </BrowserRouter>
       </ProvideAuth>

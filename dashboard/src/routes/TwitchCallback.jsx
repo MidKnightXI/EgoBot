@@ -1,7 +1,11 @@
-
+import { Flex, CircularProgress, Center } from "@chakra-ui/react";
 
 export default function TwitchCallback() {
   return (
-    <div></div>
+    <Flex>
+      <Center>
+        <CircularProgress />
+      </Center>
+    </Flex>
   )
 }
