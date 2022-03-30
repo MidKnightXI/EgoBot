@@ -19,14 +19,6 @@ function useProvideAuth() {
     const url = 'http://localhost:8080/auth/twitch'
 
     window.location = url
-    try {
-      const res = await axios.get(url, {
-        headers: { 'Content-Type': 'application/json'}
-      })
-      console.log(res)
-    } catch (e) {
-      console.error(e)
-    }
   }
 
   return {
