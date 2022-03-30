@@ -15,12 +15,16 @@ import { Center, Square, Circle } from '@chakra-ui/react'
 import { FaTwitch } from 'react-icons/fa'
 import { useState } from 'react'
 
+import { useAuth } from './auth/useAuth'
+
 function SignUpButton() {
+  const authContext = useAuth()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [isLoading, setIsLoading] = useState(false)
 
   const onButtonPressed = async () => {
     setIsLoading(true)
+    await authContext.connectWithTwitch()
     setIsLoading(false)
   }
 
@@ -58,11 +62,13 @@ function SignUpButton() {
 }
 
 function SignInButton() {
+  const authContext = useAuth()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [isLoading, setIsLoading] = useState(false)
 
   const onButtonPressed = async () => {
     setIsLoading(true)
+    await authContext.connectWithTwitch()
     setIsLoading(false)
   }
 

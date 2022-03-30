@@ -1,7 +1,6 @@
 import { useState, useContext, createContext } from 'react';
 import axios from 'axios'
 
-
 const authContext = createContext();
 
 export function ProvideAuth({ children }) {
@@ -11,11 +10,27 @@ export function ProvideAuth({ children }) {
 
 export const useAuth = () => {
   return useContext(authContext);
-};
+}
 
 
 function useProvideAuth() {
 
+  const connectWithTwitch = async () => {
+    const url = 'http://localhost:8080/auth/twitch'
+
+    window.location = url
+    try {
+      const res = await axios.get(url, {
+        headers: { 'Content-Type': 'application/json'}
+      })
+      console.log(res)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   return {
+    connectWithTwitch
   };
 }
+

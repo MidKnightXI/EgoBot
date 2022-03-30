@@ -16,6 +16,16 @@ services:
       - db
     ports:
       - ${API_PORT}:8080
+  dashboard:
+    container_name: dashboard-egobot
+    build: ./dashboard
+    restart: on-failure
+    networks:
+      - api-net
+    depends_on:
+      - api
+    ports:
+      - 3000:3000
   bot:
     container_name: bot-container
     build: ./bot
