@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Spacer, Button, Text, Tabs, TabList, Tab, TabPanels, TabPanel } from '@chakra-ui/react'
+import { Box, Flex, Heading, Spacer, Button, Text, Tabs, TabList, Tab, TabPanels, TabPanel, Link } from '@chakra-ui/react'
 import {
   Modal,
   ModalOverlay,
@@ -8,6 +8,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react'
+import { Link as RouterLink } from 'react-router-dom'
 import { useDisclosure } from '@chakra-ui/react'
 import { Center } from '@chakra-ui/react'
 import { FaTwitch } from 'react-icons/fa'
@@ -104,6 +105,8 @@ export function Navbar({}) {
         <Heading className='logo'>EgoBot</Heading>
       </Box>
       <Spacer />
+      <Link color='white' className='tab' as={RouterLink} to='home'>Home</Link>
+      <Link color='white' className='tab' as={RouterLink} to='commands'>Commands</Link>
       <Spacer />
       <Box>
         <SignUpButton />

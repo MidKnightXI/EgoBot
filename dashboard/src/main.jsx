@@ -7,10 +7,11 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 
 import App from './App'
 import TwitchCallback from './routes/TwitchCallback';
+import Home from './routes/Home';
+import Commands from './routes/Commands';
 
 ReactDOM.render(
   <StrictMode>
@@ -19,7 +20,8 @@ ReactDOM.render(
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<App />}>
-              {/* add layout later for customisation etc ... */}
+              <Route path='home' element={<Home />}/>
+              <Route path='commands' element={<Commands />} />
             </Route>
             <Route path='/callback/' element={<TwitchCallback/>}/>
           </Routes>

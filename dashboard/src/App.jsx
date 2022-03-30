@@ -1,5 +1,6 @@
 
 import { Flex } from '@chakra-ui/react';
+import { Outlet } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 
 
@@ -9,6 +10,7 @@ function App() {
   return (
     <Flex direction='column'>
       <Navbar/>
+      <Outlet/>
     </Flex>
   )
 }

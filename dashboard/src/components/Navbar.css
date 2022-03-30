@@ -4,3 +4,10 @@
     color: #FBFFFE;
     font-family: 'Nanum Gothic', sans-serif;
 }
+
+.tab {
+    color: #FBFFFE;
+    font-weight: bold;
+    padding-right: 2%;
+    padding-left: 2%;
+}
