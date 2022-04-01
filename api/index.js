@@ -1,6 +1,4 @@
 import express from 'express';
-import passport from 'passport'
-import { Strategy } from 'passport-twitch-new'
 import cors from 'cors'
 
 import { createCommand, getCommands } from './sources/commands.js';

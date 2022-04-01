@@ -10,8 +10,8 @@ import {
 
 import App from './App'
 import TwitchCallback from './routes/TwitchCallback';
-import Home from './routes/Home';
 import Commands from './routes/Commands';
+import NotFound from './routes/404';
 
 ReactDOM.render(
   <StrictMode>
@@ -20,9 +20,9 @@ ReactDOM.render(
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<App />}>
-              <Route path='home' element={<Home />}/>
               <Route path='commands' element={<Commands />} />
             </Route>
+            <Route path="*" element={<NotFound />} />
             <Route path='/callback/' element={<TwitchCallback/>}/>
           </Routes>
         </BrowserRouter>

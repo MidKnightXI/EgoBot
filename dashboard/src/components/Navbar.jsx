@@ -105,7 +105,6 @@ export function Navbar({}) {
         <Heading className='logo'>EgoBot</Heading>
       </Box>
       <Spacer />
-      <Link color='white' className='tab' as={RouterLink} to='home'>Home</Link>
       <Link color='white' className='tab' as={RouterLink} to='commands'>Commands</Link>
       <Spacer />
       <Box>
