@@ -1,0 +1,9 @@
+{
+  "name": "egobot",
+  "version": "0.0.1",
+  "description": "EgoBot, a Twitch bot that can do pretty much whatever you want ... except cofee ",
+  "main": "index.js",
+  "repository": "https://github.com/MidKnightXI/EgoBot",
+  "author": "MidKnightXI",
+  "license": "GNU General Public License v3.0"
+}
